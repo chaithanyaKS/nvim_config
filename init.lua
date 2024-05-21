@@ -49,6 +49,7 @@ require('lazy').setup({
   require 'custom.plugins.fugitive',
   require 'custom.plugins.trouble',
   require 'custom.plugins.harpoon',
+  require 'custom.plugins.surround',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

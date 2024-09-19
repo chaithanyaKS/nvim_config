@@ -42,6 +42,7 @@ require('lazy').setup({
   require 'custom.plugins.conform',
   require 'custom.plugins.nvim_cmp',
   require 'custom.plugins.tokyonight',
+  require 'custom.plugins.catpuccin',
   require 'custom.plugins.telescope',
   require 'custom.plugins.mini',
   require 'custom.plugins.treesitter',

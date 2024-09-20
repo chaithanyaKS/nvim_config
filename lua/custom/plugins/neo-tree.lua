@@ -11,14 +11,19 @@ return {
   },
   cmd = 'Neotree',
   keys = {
-    { '\\', ':Neotree reveal<CR>', { desc = 'NeoTree reveal' } },
+    { '<c-b>', ':Neotree reveal<CR>', { desc = 'NeoTree reveal' } },
   },
   opts = {
     filesystem = {
+      always_show = { -- remains visible even if other settings would normally hide it
+        '.gitignored',
+        '.gitignore',
+        '.env',
+      },
       window = {
         position = 'right',
         mappings = {
-          ['\\'] = 'close_window',
+          ['<c-b>'] = 'close_window',
         },
       },
     },

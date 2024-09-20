@@ -35,3 +35,5 @@ vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = 'copy to system clip
 vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'copy line to system clipboard' })
 
 vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]], { desc = 'delete and copy to system clipboard' })
+vim.keymap.set('n', 'gh', '0', { desc = 'go to begining of the line' })
+vim.keymap.set('n', 'gl', '$', { desc = 'go to end of the line' })

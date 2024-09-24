@@ -46,7 +46,6 @@ require('lazy').setup({
   require 'custom.plugins.telescope',
   require 'custom.plugins.mini',
   require 'custom.plugins.treesitter',
-  require 'custom.plugins.telescope_file_browser',
   require 'custom.plugins.fugitive',
   require 'custom.plugins.trouble',
   require 'custom.plugins.harpoon',

@@ -3,11 +3,11 @@ return {
     'folke/trouble.nvim',
     config = function()
       require('trouble').setup {
-        icons = false,
+        -- icons = false,
       }
 
       vim.keymap.set('n', '<leader>tt', function()
-        require('trouble').toggle()
+        require('trouble').toggle { desc = 'Toggle Trouble list' }
       end)
 
       vim.keymap.set('n', '[t', function()
@@ -16,7 +16,7 @@ return {
 
       vim.keymap.set('n', ']t', function()
         require('trouble').previous { skip_groups = true, jump = true }
-      end, { desc = { 'go to previous item in trouble list' } })
+      end, { desc = 'go to previous item in trouble list' })
     end,
   },
 }

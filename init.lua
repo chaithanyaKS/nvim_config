@@ -32,6 +32,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'custom.plugins.gitignore',
   require 'custom.plugins.neo-tree',
   require 'custom.plugins.vim_sleuth',
   require 'custom.plugins.comment',

@@ -39,6 +39,7 @@ require('lazy').setup({
   require 'custom.plugins.gitsigns',
   require 'custom.plugins.which_key',
   require 'custom.plugins.telescope',
+  require 'custom.plugins.telescope-menufacture',
   require 'custom.plugins.lspconfig',
   require 'custom.plugins.conform',
   require 'custom.plugins.nvim_cmp',
@@ -51,6 +52,7 @@ require('lazy').setup({
   require 'custom.plugins.trouble',
   require 'custom.plugins.harpoon',
   require 'custom.plugins.surround',
+  require 'custom.plugins.dropbar',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

@@ -53,6 +53,7 @@ require('lazy').setup({
   require 'custom.plugins.harpoon',
   require 'custom.plugins.surround',
   require 'custom.plugins.dropbar',
+  require 'custom.plugins.lazygit',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

@@ -3,6 +3,7 @@ return { -- Collection of various small independent plugins/modules
   config = function()
     -- Better Around/Inside textobjects
     --
+    require('mini.icons').setup()
     -- Examples:
     --  - va)  - [V]isually select [A]round [)]paren
     --  - yinq - [Y]ank [I]nside [N]ext [']quote
@@ -30,6 +31,8 @@ return { -- Collection of various small independent plugins/modules
     statusline.section_location = function()
       return '%2l:%-2v'
     end
+
+    require('mini.tabline').setup {}
 
     -- ... and there is more!
     --  Check out: https://github.com/echasnovski/mini.nvim

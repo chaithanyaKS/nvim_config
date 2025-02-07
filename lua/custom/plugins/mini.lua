@@ -31,6 +31,17 @@ return { -- Collection of various small independent plugins/modules
     statusline.section_location = function()
       return '%2l:%-2v'
     end
+    statusline.section_lsp = function(args)
+      return ''
+    end
+
+    statusline.section_diff = function(args)
+      return ''
+    end
+
+    statusline.section_fileinfo = function(args)
+      return ''
+    end
 
     -- ... and there is more!
     --  Check out: https://github.com/echasnovski/mini.nvim

@@ -190,7 +190,7 @@ return { -- LSP Configuration & Plugins
       basedpyright = {
         settings = {
           basedpyright = {
-            typeCheckingMode = 'basic',
+            typeCheckingMode = 'standard',
           },
         },
       },

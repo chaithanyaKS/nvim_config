@@ -4,6 +4,7 @@
 
 return {
   {
+    event = 'VeryLazy',
     'lewis6991/gitsigns.nvim',
     opts = {
       on_attach = function(bufnr)

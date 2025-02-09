@@ -1,6 +1,6 @@
-require 'set'
-require 'remap'
-require 'autocmds'
+require 'settings.set'
+require 'settings.remap'
+require 'settings.autocmds'
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -10,31 +10,7 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-
-  -- require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
-  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
-  require 'custom.plugins.gitignore',
-  require 'custom.plugins.neo-tree',
-  require 'custom.plugins.vim_sleuth',
-  require 'custom.plugins.comment',
-  require 'custom.plugins.gitsigns',
-  require 'custom.plugins.which_key',
-  require 'custom.plugins.telescope',
-  require 'custom.plugins.lspconfig',
-  require 'custom.plugins.conform',
-  require 'custom.plugins.nvim_cmp',
-  require 'custom.plugins.tokyonight',
-  require 'custom.plugins.catpuccin',
-  require 'custom.plugins.mini',
-  require 'custom.plugins.treesitter',
-  require 'custom.plugins.fugitive',
-  require 'custom.plugins.trouble',
-  require 'custom.plugins.harpoon',
-  require 'custom.plugins.surround',
-  require 'custom.plugins.dropbar',
-  require 'custom.plugins.noice',
+  import = 'plugins',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

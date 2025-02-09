@@ -17,6 +17,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
         return vim.fn.executable 'make' == 1
       end,
     },
+    { 'nvim-telescope/telescope-frecency.nvim', version = '^0.9.0' },
     { 'nvim-telescope/telescope-ui-select.nvim' },
     { 'molecule-man/telescope-menufacture' },
 
@@ -90,6 +91,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
     pcall(require('telescope').load_extension, 'file_browser')
+    pcall(require('telescope').load_extension, 'frecency')
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'

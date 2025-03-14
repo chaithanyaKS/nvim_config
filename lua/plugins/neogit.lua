@@ -14,6 +14,7 @@ return {
       stash = {
         kind = 'vsplit',
       },
+      graph_style = 'unicode',
     }
     vim.keymap.set('n', '<leader>gs', vim.cmd.Neogit, { desc = '[G]it show' })
   end,

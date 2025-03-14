@@ -38,6 +38,14 @@ return { -- Fuzzy Finder (files, lsp, etc)
         colorscheme = {
           enable_preview = true,
         },
+        lsp_dynamic_workspace_symbols = {
+          sorter = require('telescope').extensions.fzf.native_fzf_sorter {
+            fuzzy = true, -- false will only do exact matching
+            override_generic_sorter = true, -- override the generic sorter
+            override_file_sorter = true, -- override the file sorter
+            case_mode = 'smart_case',
+          },
+        },
       },
       extensions = {
         ['ui-select'] = {

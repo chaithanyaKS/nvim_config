@@ -43,7 +43,7 @@ return { -- Collection of various small independent plugins/modules
       return ''
     end
 
-    require('mini.pairs').setup()
+    -- require('mini.pairs').setup()
     require('mini.bracketed').setup()
   end,
 }

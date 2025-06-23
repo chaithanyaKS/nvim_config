@@ -1,4 +1,4 @@
-return { -- Autoformat
+return {
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
   lazy = false,
@@ -15,9 +15,6 @@ return { -- Autoformat
   opts = {
     notify_on_error = true,
     format_on_save = function(bufnr)
-      -- Disable "format_on_save lsp_fallback" for languages that don't
-      -- have a well standardized coding style. You can add additional
-      -- languages here or re-enable it for the disabled ones.
       local ignore_filetypes = { 'python' }
       if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
         return nil
@@ -32,6 +29,7 @@ return { -- Autoformat
       lua = { 'stylua' },
       python = { 'ruff_format' },
       ['*'] = { 'codespell' },
+      odin = { 'odinfmt' },
     },
   },
 }

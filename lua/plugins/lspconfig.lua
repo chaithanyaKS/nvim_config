@@ -2,16 +2,13 @@ return {
   'neovim/nvim-lspconfig',
   event = 'VeryLazy',
   dependencies = {
-    { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+    { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependents
     { 'williamboman/mason-lspconfig.nvim', version = '1.32.0' },
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-    -- Useful status updates for LSP.
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
     { 'j-hui/fidget.nvim', opts = {} },
 
-    -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
-    -- used for completion, annotations and signatures of Neovim apis
     { 'folke/neodev.nvim', opts = {} },
   },
   config = function()
@@ -24,55 +21,19 @@ return {
           vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
 
-        -- Jump to the definition of the word under your cursor.
-        --  This is where a variable was first declared, or where a function is defined, etc.
-        --  To jump back, press <C-t>.
-        map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-
-        -- Find references for the word under your cursor.
-        map('grr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-
-        -- Jump to the implementation of the word under your cursor.
-        --  Useful when your language has ways of declaring types without an actual implementation.
-        map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-
-        -- Jump to the type of the word under your cursor.
-        --  Useful when you're not sure what type a variable is and you want to see
-        --  the definition of its *type*, not where it was *defined*.
-        map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-
-        -- Fuzzy find all the symbols in your current document.
-        --  Symbols are things like variables, functions, types, etc.
-        map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-
-        -- Fuzzy find all the symbols in your current workspace.
-        --  Similar to document symbols, except searches over your entire project.
-        map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-
-        -- Rename the variable under your cursor.
-        --  Most Language Servers support renaming across files, etc.
         map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
-
-        -- Execute a code action, usually your cursor needs to be on top of an error
-        -- or a suggestion from your LSP for this to activate.
         map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-
-        -- Opens a popup that displays documentation about the word under your cursor
-        --  See `:help K` for why this keymap.
         map('K', vim.lsp.buf.hover, 'Hover Documentation')
-
         vim.keymap.set('i', '<c-k>', function()
           return vim.lsp.buf.signature_help()
         end, { buffer = event.buf, desc = 'LSP: Signature Help' })
 
-        -- WARN: This is not Goto Definition, this is Goto Declaration.
-        --  For example, in C this would take you to the header.
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
         map('<leader>td', function()
           local config = vim.diagnostic.config() or {}
           local virtual_text = not config.virtual_text
           vim.diagnostic.config { virtual_text = virtual_text }
-        end, '[G]oto [D]eclaration')
+        end, '[T]oggle [D]iagnostic Virtual text')
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
@@ -102,25 +63,13 @@ return {
             end,
           })
         end
-
-        -- The following autocommand is used to enable inlay hints in your
-        -- code, if the language server you are using supports them
-        --
-        -- This may be unwanted, since they displace some of your code
-        if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-          map('<leader>th', function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-          end, '[T]oggle Inlay [H]ints')
-        end
       end,
     })
 
-    -- LSP servers and clients are able to communicate to each other what features they support.
-    --  By default, Neovim doesn't support everything that is in the LSP specification.
-    --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-    --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('blink-cmp').get_lsp_capabilities())
+    local blink_capabilities = require('blink-cmp').get_lsp_capabilities()
+
+    capabilities = vim.tbl_deep_extend('force', capabilities, blink_capabilities)
 
     local servers = {
       lua_ls = {
@@ -140,15 +89,26 @@ return {
           },
         },
       },
+      ols = {
+        settings = {
+          checker_args = '-strict-style',
+        },
+      },
+      zls = {
+        settings = {
+          autocompleteFunctionParams = false,
+        },
+      },
     }
 
     require('mason').setup()
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
-      'stylua', -- Used to format Lua code
+      'stylua',
       'gopls',
       'basedpyright',
       'harper-ls',
+      'ruff',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

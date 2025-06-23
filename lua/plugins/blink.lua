@@ -1,19 +1,14 @@
 return {
   'saghen/blink.cmp',
-  version = '1.*',
-  opts_extend = {
-    'sources.completion.enabled_providers',
-    'sources.default',
-  },
+  dependencies = { 'rafamadriz/friendly-snippets' },
 
-  dependencies = {
-    'rafamadriz/friendly-snippets',
-  },
-  event = 'InsertEnter',
+  version = '1.*',
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
+    -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+    keymap = { preset = 'enter' },
 
     appearance = {
       nerd_font_variant = 'mono',
@@ -21,17 +16,13 @@ return {
     },
 
     completion = {
-      accept = {
-        auto_brackets = { enabled = false },
-      },
+      documentation = { auto_show = true, auto_show_delay_ms = 200 },
+      list = { selection = { auto_insert = false } },
       menu = {
         draw = {
           treesitter = { 'lsp' },
         },
       },
-
-      documentation = { auto_show = true, auto_show_delay_ms = 200 },
-      list = { selection = { auto_insert = false, preselect = false } },
     },
 
     sources = {
@@ -40,8 +31,6 @@ return {
     cmdline = {
       enabled = false,
     },
-
-    keymap = { preset = 'default' },
 
     fuzzy = { implementation = 'prefer_rust_with_warning' },
   },

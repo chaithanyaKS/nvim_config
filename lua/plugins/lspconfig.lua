@@ -3,7 +3,7 @@ return {
   event = 'VeryLazy',
   dependencies = {
     { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
-    'williamboman/mason-lspconfig.nvim',
+    { 'williamboman/mason-lspconfig.nvim', version = '1.32.0' },
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
     -- Useful status updates for LSP.

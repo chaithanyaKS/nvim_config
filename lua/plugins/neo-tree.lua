@@ -11,7 +11,7 @@ return {
   },
   cmd = 'Neotree',
   keys = {
-    { '<c-b>', ':Neotree toggle<CR>', { desc = 'NeoTree reveal' } },
+    { '<c-b>', ':Neotree reveal right<CR>', { desc = 'NeoTree reveal' } },
   },
   opts = {
     filesystem = {
@@ -26,6 +26,14 @@ return {
           ['<c-b>'] = 'close_window',
         },
       },
+    },
+    follow_current_file = {
+      enabled = true,
+    },
+  },
+  buffers = {
+    follow_current_file = {
+      enabled = true,
     },
   },
 }

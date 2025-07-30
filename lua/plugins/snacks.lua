@@ -15,7 +15,7 @@ return {
       enabled = true,
       timeout = 3000,
     },
-    picker = { enabled = true, sources = { explorer = { layout = { layout = { position = 'right' } } } } },
+    picker = { enabled = true, sources = { explorer = { layout = { layout = { position = 'right' } } } }, matcher = { frecency = true } },
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = false },

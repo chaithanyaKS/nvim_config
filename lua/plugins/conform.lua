@@ -4,7 +4,7 @@ return {
   lazy = false,
   keys = {
     {
-      '<leader>f',
+      '<leader>F',
       function()
         require('conform').format { async = true, lsp_format = 'first' }
       end,
@@ -28,8 +28,9 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       python = { 'ruff_format' },
-      ['*'] = { 'codespell' },
+      ['*'] = { 'harper-ls' },
       odin = { 'odinfmt' },
+      go = { 'goimports' },
     },
   },
 }

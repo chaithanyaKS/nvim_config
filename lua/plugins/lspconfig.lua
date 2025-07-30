@@ -3,20 +3,16 @@ return {
   event = 'VeryLazy',
   dependencies = {
     { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependents
-    { 'williamboman/mason-lspconfig.nvim', version = '1.32.0' },
+    { 'williamboman/mason-lspconfig.nvim', version = '*' },
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
     { 'j-hui/fidget.nvim', opts = {} },
-
     { 'folke/neodev.nvim', opts = {} },
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
       callback = function(event)
-        -- NOTE: Remember that Lua is a real programming language, and as such it is possible
-        -- to define small helper and utility functions so you don't have to repeat yourself.
         local map = function(keys, func, desc)
           vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
@@ -35,11 +31,6 @@ return {
           vim.diagnostic.config { virtual_text = virtual_text }
         end, '[T]oggle [D]iagnostic Virtual text')
 
-        -- The following two autocommands are used to highlight references of the
-        -- word under your cursor when your cursor rests there for a little while.
-        --    See `:help CursorHold` for information about when this is executed
-        --
-        -- When you move your cursor, the highlights will be cleared (the second autocommand).
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.server_capabilities.documentHighlightProvider then
           local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
@@ -106,6 +97,7 @@ return {
     vim.list_extend(ensure_installed, {
       'stylua',
       'gopls',
+      'goimports',
       'basedpyright',
       'harper-ls',
       'ruff',
@@ -121,6 +113,9 @@ return {
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
           require('lspconfig')[server_name].setup(server)
         end,
+      },
+      opts = {
+        automatic_enable = { exclude = 'jdtls' },
       },
     }
   end,

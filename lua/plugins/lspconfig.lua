@@ -114,9 +114,6 @@ return {
           require('lspconfig')[server_name].setup(server)
         end,
       },
-      opts = {
-        automatic_enable = { exclude = 'jdtls' },
-      },
     }
   end,
 }

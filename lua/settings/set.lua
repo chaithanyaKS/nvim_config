@@ -82,3 +82,4 @@ vim.diagnostic.config {
   -- Other diagnostic options can be configured here as well,
   -- such as 'signs', 'underline', 'float', 'severity_sort', etc.
 }
+vim.opt.winborder = 'single'

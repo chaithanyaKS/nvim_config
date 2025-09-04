@@ -28,14 +28,14 @@ return {
     {
       '<leader><space>',
       function()
-        Snacks.picker.smart()
+        Snacks.picker.buffers()
       end,
       desc = 'Smart Find Files',
     },
     {
       '<leader>,',
       function()
-        Snacks.picker.buffers()
+        Snacks.picker.smart()
       end,
       desc = 'Buffers',
     },
@@ -218,13 +218,6 @@ return {
         Snacks.picker.lines()
       end,
       desc = 'Buffer Lines',
-    },
-    {
-      '<leader>sc',
-      function()
-        Snacks.picker.command_history()
-      end,
-      desc = 'Command History',
     },
     {
       '<leader>sC',

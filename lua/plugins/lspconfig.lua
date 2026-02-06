@@ -109,9 +109,18 @@ return {
       automatic_installation = false,
       handlers = {
         function(server_name)
-          local server = servers[server_name] or {}
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
+          if server_name == 'jdtls' then
+            require('lspconfig').jdtls.setup {
+              cmd = { 'echo', 'disabled' },
+              on_attach = function()
+                return
+              end,
+            }
+          else
+            local server = servers[server_name] or {}
+            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            require('lspconfig')[server_name].setup(server)
+          end
         end,
       },
     }

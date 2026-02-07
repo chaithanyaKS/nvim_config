@@ -25,15 +25,22 @@ local config = {
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
     '-Dosgi.bundles.defaultStartLevel=4',
     '-Declipse.product=org.eclipse.jdt.ls.core.product',
-    '-Dlog.protocol=true',
-    '-Dlog.level=ALL',
-    '-javaagent:' .. jdtls_dir .. '/lombok.jar',
+    '-Dosgi.checkConfiguration=true',
+    '-Dosgi.configuration.cascaded=true',
+    '-Djava.import.generatesMetadataFilesAtProjectRoot=false',
+    -- '-Dlog.protocol=true',
+    -- '-Dlog.level=ALL',
+    '-javaagent:'
+      .. jdtls_dir
+      .. '/lombok.jar',
     '-Xmx1g',
     '--add-modules=ALL-SYSTEM',
     '--add-opens',
     'java.base/java.util=ALL-UNNAMED',
     '--add-opens',
     'java.base/java.lang=ALL-UNNAMED',
+    '-Djdk.xml.maxGeneralEntitySizeLimit=0',
+    '-Djdk.xml.totalEntitySizeLimit=0',
     '-jar',
     jdtls_dir .. '/plugins/org.eclipse.equinox.launcher.jar',
     '-configuration',
@@ -45,6 +52,9 @@ local config = {
   root_dir = require('jdtls.setup').find_root {
     '.git',
     'pom.xml',
+    '.git',
+    'gradlew',
+    'mvnw',
   },
 
   settings = {
@@ -54,11 +64,6 @@ local config = {
       implementationsCodeLens = { enabled = true },
       referencesCodeLens = { enabled = true },
       signatureHelp = { enabled = true },
-
-      project = {
-        outputPath = 'bin',
-        sourcesPaths = { 'src', 'test', 'web', 'contracts' },
-      },
 
       configuration = {
         updateBuildConfiguration = 'automatic',

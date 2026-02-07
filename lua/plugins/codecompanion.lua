@@ -12,6 +12,13 @@ return {
         name = 'copilot',
         model = 'claude-haiku-4.5',
         completion_provider = 'blink',
+        roles = {
+          llm = function(_adapter)
+            local adapter = _G.codecompanion_chat_metadata[vim.api.nvim_get_current_buf()].adapter
+            return adapter.name .. ' (' .. adapter.model .. ')'
+          end,
+          user = 'Me',
+        },
       },
       inline = {
         adapter = 'copilot',

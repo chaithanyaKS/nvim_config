@@ -5,8 +5,8 @@ return {
     require('mini.ai').setup { n_lines = 500 }
     require('mini.surround').setup()
     require('mini.bracketed').setup()
+    require('mini.comment').setup()
     require('mini.pairs').setup {
-      -- In which modes mappings from this `config` should be created
       modes = { insert = true, command = false, terminal = false },
       mappings = {
         [')'] = { action = 'close', pair = '()', neigh_pattern = '[^\\].' },

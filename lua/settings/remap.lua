@@ -20,10 +20,10 @@ vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]], { desc = 'delete and copy to 
 vim.keymap.set('n', 'H', '0', { desc = 'go to begining of the line' })
 vim.keymap.set('n', 'L', '$', { desc = 'go to end of the line' })
 
-vim.keymap.set('n', '<leader>tc', vim.cmd.CopilotChatToggle, { desc = 'Toggle Copilot Chat' })
+-- vim.keymap.set('n', '<leader>tc', vim.cmd.CopilotChatToggle, { desc = 'Toggle Copilot Chat' })
 
-vim.keymap.set({ 'n', 'v' }, '<leader>aa', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true })
-vim.keymap.set({ 'n', 'v' }, '<leader>ac', '<cmd>CodeCompanionChat Toggle<cr>', { noremap = true, silent = true })
+-- vim.keymap.set({ 'n', 'v' }, '<leader>aa', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true })
+-- vim.keymap.set({ 'n', 'v' }, '<leader>ac', '<cmd>CodeCompanionChat Toggle<cr>', { noremap = true, silent = true })
 
 -- Expand 'cc' into 'CodeCompanion' in the command line
 vim.cmd [[cab cc CodeCompanion]]
